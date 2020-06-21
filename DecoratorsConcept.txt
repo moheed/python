@@ -57,9 +57,103 @@ class Adder:
 >>> plus_3(4)
 7
 
+How to check if an object is callable or not?
+callable(object) built-in function of python
+
 
 Key Takeaways
-Everything in Python is an object, including functions. You can assign them to variables, store them in data structures, and pass or return them to and from other functions (first-class functions.)
+Everything in Python is an object, including functions. You can assign them to variables, 
+store them in data structures, and pass or return them to and from other functions (first-class functions.)
 First-class functions allow you to abstract away and pass around behavior in your programs.
-Functions can be nested and they can capture and carry some of the parent function’s state with them. Functions that do this are called closures.
+Functions can be nested and they can capture and carry some of the parent function’s state with them. 
+Functions that do this are called closures.
 Objects can be made callable which allows you to treat them like functions in many cases.
+
+
+Decorators Definition:
+They “decorate” or “wrap” another function and let you execute code before and after the wrapped function runs.
+Basically Pre and post processing on wrapped function, and hence can change the behaviour of function, without
+actually changing the existing code.
+a decorator is a callable that takes a callable as input and returns another callable.
+Eg:
+def null_decorator(func):
+    return func
+	
+Decorate following greet method:
+def greet():
+    return 'Hello!'
+
+greet = null_decorator(greet)			#Manual decoration, without using decoration-syntax of language.
+
+>>> greet()
+'Hello!'
+
+Decoration with language syntax:
+@null_decorator
+def greet():
+    return 'Hello!'
+
+Note: calling sequence of this will be null_decorator will be called first and then greet..
+This syntax is a syntactic sugar to call decorator and makes code more readable and less error-prone.
+
+Decorators modify the behavior of a callable(greet) through a wrapper(rapper) so you don’t have to permanently 
+modify the original(greet). The callable(greet) isn’t permanently modified—its behavior changes only when 
+decorated by decorater(uppercase).
+Example:
+def uppercase(func):
+    def rapper():
+        original_result = func()
+        modified_result = original_result.upper()
+        return modified_result
+    return rapper
+
+@uppercase
+def greet():
+    return 'Hello!'
+
+>>> greet()
+'HELLO!'
+
+Decorators get applied from bottom to top.
+Eg:
+@strong
+@emphasis
+def greet():
+    return 'Hello!'
+
+This is same as:
+decorated_greet = strong(emphasis(greet))
+
+
+How to Write “Debuggable” Decorators
+When you use a decorator, really what you’re doing is replacing one function with 
+another. One downside of this process is that it “hides” some of the metadata attached to the original 
+(undecorated) function.
+Eg:
+decorated_greet=uppercase(greet)
+>>> greet.__name__
+'greet'
+>>> greet.__doc__
+'Return a friendly greeting.'
+
+>>> decorated_greet.__name__
+'wrapper'
+>>> decorated_greet.__doc__
+None
+
+To fix it use: functools.wrap inside decorator.
+import functools
+
+def uppercase(func):
+    @functools.wraps(func)
+    def wrapper():
+        return func().upper()
+    return wrapper
+
+
+property decorator:
+#Used to make an attribute(method) to behave like data-member.
+#get the properies of getter/setters
+#this might break the other data-members, if so, use getter/setter/deleter :
+#basically methods with property decorator. to fix them.
+

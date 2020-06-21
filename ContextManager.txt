@@ -1,0 +1,41 @@
+Context Manager:
+
+with open(fname, mode) as fd:
+	fd.read()
+	
+
+
+connect/close database/files.
+acquire/release the lock
+
+
+How to write a context manager:
+using class:
+using decorator
+
+class open_file():
+	def __init__():
+		self.fname=fname
+		self.mode=mode
+	def __enter__():
+		self.f=open(self.fname,self.mode)
+		return self.f
+	def __exit__():
+		self.f.close()
+		return
+	
+__enter__
+__exit__			dunder to help you create the context-manager.
+
+
+Using decorator
+from contextlib import contextmanager
+@contextmanager
+def open_file(fname,fmode):
+	try:
+		f=open(fname,fmode)
+		yield f
+	except Exception:
+		pass
+	finally:
+		f.close()

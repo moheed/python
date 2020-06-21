@@ -1,0 +1,81 @@
+class Person(name):
+	def __init__(name):
+		self.name=name
+	def reveal_identity():
+		print(name)
+
+class SuperHero(person):
+	def __init__
+	
+classmethod() function is used in factory design patterns where we want to 
+call many functions with the class name rather than object.
+The classmethod() is an inbuilt function in Python, which returns a class method for a given function.
+can be used as decorator to the class methods.
+
+Regular method:
+pass the 'self' instance automatically (the instance)
+Class method:
+automatically pass the Class itself 'cls' (basically decorated with class_method.. any class..
+static method:
+dont pass(neither self nor cls) anything automatically. behave like regular function
+created with @staticmethod decorator
+When to make a method static: If its not using any of the self/cls, but it has some logical connection to class.
+
+Inheritance: 
+supported by python are: single, multilevel and multiple inheritance (unlike java, doesnt support multiple)
+
+syntax very simple:
+
+class Parent():
+	def __init__(name):
+		self.name=name
+		
+class Child(Parent):  #child inherits from Parent
+	def __init__(pname, name):
+		super.__init__(pname)  #or Child.__init__(pname)  useful for multiple inheritance.
+		self.name=name
+		
+#Method/Member resolution order is:
+this-class then parent then built-in
+
+#Few built-in methods to check:
+Parent p1("Moheed")
+Chile c1("Moheed","Amanee")
+Child c1("amanee")
+isinstance(c1, Child)  #returns True c1 is instance of Child class
+Child.issubclass(Child, Parent)  #returns True c1 is subclass of Parent
+
+Real world example:
+exception module of python's whisky library
+
+
+Built-in Magic and dunder Methods of classes:
+#eg Object behave differently, based on their nature (eg operator overloading/method overloading)
+These methods are called magic-method.
+#__init__()  #dunder init,  a constructor
+#__repr__()	 #developer readable object representation
+#eg you can copy paste the o/p of print(Person) to create the same Person
+#__str__()   #user readable string representation 
+#user-friendly.. 
+
+Few others are:
+#__add__()  #dunder add
+#__sub__()
+#__len__()
+#__lt__()
+#__eq__()
+#__gt__()
+__module__
+__qualname__
+
+
+@property #decorator
+return NotImplemented  #if dunder is not implemented say in object1 but implemented in object2, it will
+check for dunder in object2..
+
+
+Design Pattern:
+singleton
+Factory design pattern
+
+

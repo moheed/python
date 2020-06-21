@@ -1,0 +1,43 @@
+#Note  on main
+#any single file which starts executions on the command line or standalone gets 
+#set its __name__ attribute as main
+#and any other file(python file is same as module) which gets imported, at the time of import
+#its __name__ gets set to the filename.
+#
+#
+String Formatting:
+Method Latest: [can be used to print objects too as long as object implements __str__/__repr__ method]
+f'strings'
+#Fast strings
+printing strings in python:
+str.format()
+% formatting
+f'strings' formatting
+f'some string {variable} some more text'
+f'other {variable1*varable2}'
+
+str.format() : 
+num1=1.0
+num2=2
+print ("This is {} {} {} {}"
+       .format(num1, num2, "three", "four")) 
+	   
+print("{gfg} is a {0} science portal for {1}"
+		.format("computer", "geeks", gfg ="GeeksforGeeks")) #positional formatting and keyworded formatting
+
+Format-specification:[d,f,s,c,b,e,o,x]    
+print ("My average of this {0} was {1:.2f}%"
+            .format("semester", 78.234876)) 
+#Syntax: {[argument_index_or_keyword]:[width][.precision][type]}
+Eg:
+string="{0} is {1} and currently {2}. Take it easy {easy:>10.3s}.".format(
+                        name,age, prof, easy="NotEasy")
+print(string)
+Alignment:
+By default strings are left-justified within the field, and numbers are right-justified.(change with ><^ 
+print("It is {0:5} degrees outside !"
+                        .format(40)) 
+print ("This site is {0:.2f}% securely {1}!!". 
+                    format(100, "encrypted")) 
+			
+	   
