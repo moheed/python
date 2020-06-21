@@ -1,0 +1,79 @@
+Python’s Itertool is a module that provides various functions that work on 
+iterators to produce complex iterators. This module works as a fast, 
+memory-efficient tool that is used either by themselves or in combination to form iterator algebra.
+
+Different types of iterators provided by this module are:
+
+Infinite iterators:
+count(start, step)
+eg 
+for x in itertools.count(1, 10):
+	print(x)  #infinitely prints 1, 11, 21, 31, .... 
+cycle(AB) #cycle A B A B A B........ (infitnetly)
+
+Combinatoric iterators
+repeat(val, num)
+print (list(itertools.repeat(25, 4))) 
+
+product(iterable)
+eg list(product(1,2))  o/p: (1,1), (1,2), (2,1), (2,2)
+
+Permutations(iterable, r):  #nPr
+
+Combinations(iterable, r) #combinations without repeat.
+
+print(list(combinations('AB', 2)))  
+
+Combinations_with_replacement(iterable, r)
+
+Terminating iterators:
+accumulate(iter, func)
+eg:
+print (list(itertools.accumulate(li1, operator.mul)))  
+#by default it adds.
+
+chain(iter1, iter2..) #chain mulitple iterators
+print (list(itertools.chain(li1, li2, li3)))
+
+chain.from_iterable()
+
+compress(iter, selector):
+eg:
+print (list(itertools.compress('GEEKSFORGEEKS', [1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0]))) 
+
+
+dropwhile(func, seq)
+eg:
+li = [2, 4, 5, 7, 8]
+print (list(itertools.dropwhile(lambda x : x % 2 == 0, li))) 
+
+
+filterfalse(func, seq)
+print (list(itertools.filterfalse(lambda x : x % 2 == 0, li)))  
+
+
+islice(iterable, start, stop, step)
+print (list(itertools.islice(li, 1, 6, 2)))
+
+starmap(func., tuple list)
+takewhile(func, iterable) #opposite of dropwhile(f,iter)
+
+tee(iterator, count)  #split an iterator to <count> iterators.
+
+zip_longest( iterable1, iterable2, fillval)
+
+itertools.groupby() 
+eg:
+L = [("a", 1), ("a", 2), ("b", 3), ("b", 4)] 
+  
+# Key function 
+key_func = lambda x: x[0] 
+  
+for key, group in itertools.groupby(L, key_func): 
+    print(key + " :", list(group)) 
+ 
+
+
+
+Terminating iterators
+I
