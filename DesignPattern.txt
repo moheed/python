@@ -1,0 +1,36 @@
+Design Pattern:
+A. Creational Design pattern:
+Creational patterns provides essential information regarding the Class instantiation or the object instantiation. 
+
+1. Factory Method
+Generally, tight coupling is being avoided between the products and the creator classes and objects.
+
+2. Abstract Factory Method
+
+3. Builder Method
+4. Prototype Method
+5. Singleton Method
+Definition: The singleton pattern is a design pattern that restricts the instantiation of a class to one object.
+
+
+B. Structural Design Patterns
+Adapter Method
+Bridge Method
+Composite Method
+Decorator Method
+Facade Method
+Proxy Method
+FlyWeight Method
+
+C. Behavioral Design Patterns
+Chain of Responsibility Method
+Command Method
+Iterator Method
+Mediator Method
+Memento Method
+Observer Method
+State Method
+Strategy Method
+Template Method
+Visitor Method
+
