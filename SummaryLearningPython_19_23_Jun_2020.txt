@@ -1,14 +1,12 @@
 Summary:
-
+A. OOPS concept
 @classmethod
 a make a method as factory.. basically.. another construtor for class..
 there can be multiple constructor in java.. why not in python..
-it takes 'cls' as its first param (unlike 'self' for regular method).
+Always takes 'cls' as its first param (unlike 'self' for regular method).
 
 @staticmethod
-method is static, if its not related to class/object
-
-
+method is static, if its not related to class/object and IF DECORATED, WONT BE PASSED NEITHER SELF NOR CLS
 
 normal method:
 always take self.
@@ -27,3 +25,166 @@ Basically changing an existing propery of the class with the help of writing(met
 for the same property and making the existing propery private to class.]
 def price(self):
 	return self._price
+	
+A1. Everything in Python is an object, including functions.	
+A2. __init__, __dir__, __name__ all double dunder are private to class.
+A3. _only_for_child_ are: protected.
+B. Iterators:
+1.Anything that can be looped is iterable. 
+2.Each iterable has an iterator associated with it.
+3.Each iterator object have, __next__/__init__ method and StopIteration exception.(called via next())
+4. Iterators are their own iterable too.
+5. consuming items from iterator, removes it from the iterator.
+
+C. Generators:
+1. Are functions with yield statement
+2. or expressions which returns multiple values as asked. usually expression is surrounded by parentheses.
+3. Generators have no next method built-in, but works based on the yield or embeded-expressions/functions next
+	method. [And hence can be used to implement iterator without caring about iterator protocol]
+
+D. Unittest:
+import unittest
+unittest.main()
+#Mostly convention:
+unit-test module name (ie file where test cases are) and test-methods starts with prefix test_
+eg to test calc.py
+unittest module will be called test_cacl.py a test function to test add() method of calc module needs 
+a test_add() method.
+
+E. subtyping and MultipleInheritance:
+In the case of multiple inheritance a given attribute is first searched in the current class 
+if it’s not found then it’s searched in the parent classes. 
+The parent classes are searched in a depth-first, left-right fashion and EACH CLASS IS SEARCHED ONCE.
+One can see Method Resolution order by:
+ClassName.mro()
+or className.__mro__
+Note: use super.method_name() to enforce this resolution order
+Note: multipleClass inheritance is defined like below
+classC(classA,classB): #classC inherits from classA and classB. if m() is in both A and B, m of A will be called
+first followed by m of B. 
+
+F. thread and process, concurrent:
+with concurrent.futures.ThreadPoolExecutor() as tpe:
+with concurrent.futures.ProcessPoolExecutor() as ppe:
+Note: above creates pool of thread/process.
+t1=tpe.submit(<f1>, arg1) will schedule a thread and return a thread object for future usage(eg checking result)
+t1.result()
+if tpe has multiple threads scheduled, one can check the thread status by iterating over objects in futures:
+t=concurrent.futures.as_completed()
+
+G. Logging:
+logger=logging.getlogger(__name__)  #set the logger for this module
+logger.setlevel(logging.INFO)
+logfile_handle = logging.FileHandler(module_name+'.log')
+logger.addHandler(logfile_handle)
+logfile_formatter=logging.Formatter('%(levelname)s:%(name)s:%(message)s')
+lofile_handle.setFormatter(logfile_formatter)
+
+H. String Formatting:
+printing strings in python:
+str.format()
+% formatting
+f'strings' formatting  #LATEST
+f'some string {variable} some more text'
+f'other {variable1*varable2}'
+
+I. itertools:
+infinite(count,cycle)
+combinatoric(combinations,combinations_with_replacement,permutation,repeat,product) 
+terminating(dropwhile,filterfalse,tee,chain,starmap,takewhile,islice,groupby)
+
+J. Design Patter
+J1. Creational Design pattern: Factory, Abstract Factory, Builder, Prototype, 
+			Singleton Method(restricts the instantiation of a class to one object)
+J2. Structural Design Patterns: Adapter, Bridge, Composite, Decorator, Facade, Proxy, FlyWeight Method
+J3. Behavioral Design Patterns: Chain of Responsibility, Command, Iterator, Mediator, Memento, Observer, 
+			State, Strategy, Template, Visitor Method
+			
+K. First class object:
+	In short, it means there are no restrictions on the object's use. It can be processed 
+		like any other object.
+L. Functions can be nested and they can capture and carry some of the parent function’s state with them. 
+   Functions that do this are called closures. A closure remembers the values from its enclosing lexical scope 
+   even when the program flow is no longer in that scope.
+M. Objects can be made callable which allows you to treat them like functions in many cases.
+	__call__() method to make a class object callable.
+	callable(object) built-in to check if object is callable.
+
+N. Decorators:
+UseCases: logging, enforcing access control and authentication, instrumentation and timing functions, 
+					rate-limiting, caching and more.
+Uses the closure of functions, to decorate other function such that original function behaviour is changed
+without modifying its code.
+Call is in stacked order of decoration. That is first decroator close to decorated will be called first.
+Built-in decorators are:
+@classmethod(used to provide alternative constructor to class, takes cls as first argument by default.)
+@property(used as getter/setter/deleter for certain property of class)
+
+O. date module:
+date.today().year
+
+P. context manager:
+writing a context manager:
+using class:
+	__init__()
+	anything in b/w is context protected.
+	__exit__()  #dunder to help creation of context manager
+using decorator:
+	from contextlib import contextmanager
+	@contextmanager
+	def open_file(fname,fmode):#with try and finally blocks.
+		try:
+			sth-fishy-code
+			yield <something which will be processed by outside word>
+		finally:
+			cleanup-code
+Q. List/Generator Comprehension/Sequence Comprehension:
+Q0. filter(),map(),reduce(),lambda(),reversed(), enumerate()
+1. A list comprehension consists of brackets containing an expression followed by a for clause, 
+	then zero or more for or if clauses.
+2. nested listcomp is evaluated in the context of the for that follows it
+matrix = [
+	[1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+]
+eg. matrix=[[row[i] for row in matrix] for i in range(4)]  gives transpose of matrix.
+matrix=[
+	[1, 5, 9], 
+	[2, 6, 10], 
+	[3, 7, 11], 
+	[4, 8, 12]
+]
+equivalent to: [HOWWWWWWW: TODO>>]
+	for i in range(4):
+		transposed.append([row[i] for row in matrix])
+NOTE: PREFER BUILT-IN FUNCTIONS TO COMPLEX FLOW STATEMENTS
+R. unpacking arguement list:
+	*mylist
+	**mydict
+	eg for k, v in knights.items():
+S. *arg, **kwarg
+	normal position args, keyworded args.
+
+T. When to use While loop and when to use for loop:
+
+U. Python utilizes a system, which is known as “Call by Object Reference” or “Call by assignment”.
+	simple objects always 'call by assignment', complex-objects pass-by-reference. non-mutable object present
+	challenge. Hence a first needs to be converted to mutable then operated upon.
+V. mutable vs unmutable:
+	Object which can be modified vs object which can't be modified.
+
+W. __str__, __repr__() :
+	dundor method used for printing objects. 
+	__repr__() more developer friendly
+	__str__() more user friendly.
+X. Built-in types:
+	Simple: int, bool, None, float, complex, string,
+	Complex: tuple,list,set,dictionary, iterator, class many more: Revise.
+Y. Inheritance: 
+supported by python are: single, multilevel and multiple inheritance (unlike java, doesnt support multiple)
+
+Z. Miscellaneous dunder methods:
+	__add__(),__sub__(),__len__(), __lt__(), __eq__(), __gt__(),__module__(),__qualname__()
+
+
