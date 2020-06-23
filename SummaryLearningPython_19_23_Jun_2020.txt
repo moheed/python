@@ -186,5 +186,32 @@ supported by python are: single, multilevel and multiple inheritance (unlike jav
 
 Z. Miscellaneous dunder methods:
 	__add__(),__sub__(),__len__(), __lt__(), __eq__(), __gt__(),__module__(),__qualname__()
+	
+AA. Dynamically typed lang:
+strongly-type: which cant add two different type of values 
+eg "1"+2 is error. if type checking is done at runtime its dynamically typed languag
 
+AB. id() function  [associates an unique id to an object]
 
+AC. Meta programming: A programming methodology, where program modifies itself during course of its run.
+
+AD. OS module
+AE. subprocess module
+AF. File Handling:
+	f.read()/f.readlines()/f.readline()/f.open()/f.close()/with/ or just iterate over file(as a sequence)
+AG. argparse
+AH. networking modules:
+	two level:
+	low-levle:		socket()
+	high-level:		smtp.send() etc.
+AI. sys module
+AJ. re module
+AK. numpy (thirdparty lib)
+AL.	string methods
+AM. re module
+AN. expect module.
+AO. Scopes: global/local/modulelevle/outermost and others.
+
+AP. yaml/netconf/restconf
+AQ.	vlan/subnet/vrf
+AR.	collections module.
