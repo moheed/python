@@ -1,0 +1,29 @@
+Summary:
+
+@classmethod
+a make a method as factory.. basically.. another construtor for class..
+there can be multiple constructor in java.. why not in python..
+it takes 'cls' as its first param (unlike 'self' for regular method).
+
+@staticmethod
+method is static, if its not related to class/object
+
+
+
+normal method:
+always take self.
+
+syntax of method property:
+property(fget, fset, fdel, doc)
+@property decorator:
+Basically used to treat a function as a member modifier (by help of getter/setter/deleter of the decorated method)
+@property is a built-in decorator for the property() function in Python. It is used to give 
+"special" functionality to certain methods to make them act as getters, setters, or deleters 
+when we define properties in a class. 
+@property  #a getter for the self._price [which previously was self.price, note price() method is still
+accessible outside. the class, but self._price is no more.. however before proptery-decoration, self._price
+was visible as self.price data member.
+Basically changing an existing propery of the class with the help of writing(method) getter/setter/deleter 
+for the same property and making the existing propery private to class.]
+def price(self):
+	return self._price
