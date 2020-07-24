@@ -4,12 +4,14 @@ A. OOPS concept
 a make a method as factory.. basically.. another construtor for class..
 there can be multiple constructor in java.. why not in python..
 Always takes 'cls' as its first param (unlike 'self' for regular method).
+usually method names start with from_<something> (cls,<something>)  returns the object created.
 
 @staticmethod
 method is static, if its not related to class/object and IF DECORATED, WONT BE PASSED NEITHER SELF NOR CLS
 
 normal method:
 always take self.
+
 
 syntax of method property:
 property(fget, fset, fdel, doc)
@@ -116,6 +118,8 @@ UseCases: logging, enforcing access control and authentication, instrumentation 
 Uses the closure of functions, to decorate other function such that original function behaviour is changed
 without modifying its code.
 Call is in stacked order of decoration. That is first decroator close to decorated will be called first.
+To fix it(hidden docstrings) functools.wrap inside decorator.
+import functools
 Built-in decorators are:
 @classmethod(used to provide alternative constructor to class, takes cls as first argument by default.)
 @property(used as getter/setter/deleter for certain property of class)
@@ -142,13 +146,32 @@ Q. List/Generator Comprehension/Sequence Comprehension:
 Q0. filter(),map(),reduce(),lambda(),reversed(), enumerate()
 1. A list comprehension consists of brackets containing an expression followed by a for clause, 
 	then zero or more for or if clauses.
-2. nested listcomp is evaluated in the context of the for that follows it
+2. nested listcomp is evaluated in the context of the for that follows it.[The result will be 
+a new list resulting from evaluating the expression in the context of the for and if clauses which follow it]
 matrix = [
 	[1, 2, 3, 4],
     [5, 6, 7, 8],
     [9, 10, 11, 12],
 ]
 eg. matrix=[[row[i] for row in matrix] for i in range(4)]  gives transpose of matrix.
+Explanation: evaluate [row[i] for row in matrix] in context of for i in range(4)
+so i will be  0,1,2,3
+Now expression: [row[i] for row in matrix]
+takes each row in matrix.. and then takes first element of that row.
+so it will build up as:
+[[1
+[[1 5
+[[1 5 9
+[[1 5 9] #note here expression will finish for i=0 as there are no more row in input matrix.
+Then
+For row[1] in i/p matrix:
+[2, 6 10]
+then for row[2]
+[3,7,11]
+then for row[3]
+[4,8,12]
+at this point i exausted.. hence the result.
+Although this code is not pretty readable and cryptic in a sense... it works.
 matrix=[
 	[1, 5, 9], 
 	[2, 6, 10], 

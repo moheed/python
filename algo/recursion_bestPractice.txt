@@ -1,0 +1,7 @@
+It is good practice to use as little global variables as possible, preferrably none1.
+
+To avoid the need for a global variable in recursion, you can use an inner function that uses a closure:
+
+
+2. Ensure that recursion at each step makes problem-set smaller
+3. Ensure that there is a terminating case for recursion.
